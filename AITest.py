@@ -5,9 +5,38 @@ from  sklearn.feature_extraction.text import  CountVectorizer
 
 import jieba
 
-from sklearn.preprocessing import  MinMaxScaler
+from sklearn.preprocessing import  MinMaxScaler , StandardScaler , Imputer
 
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+import  numpy as np
+
+
+def stand():
+
+    """
+    标准化:目的是转化为均值为0，标准差为1
+
+    :return:
+    """
+
+    std = StandardScaler()
+    data = std.fit_transform([[2,-3,4] , [1,3,1] , [5,8,-1]])
+    print(data)
+
+
+
+def imputer():
+
+    """
+    缺失值处理:填补策略：mean(平局值),按照行或者列（axis,1 是 列， 0 是行）,按照平局值填补，所以，空缺位置为（1 + 9）/2 = 5
+    :return:
+    """
+
+    im = Imputer(missing_values='NaN' , strategy='mean',axis=0)
+    data = im.fit_transform([[1,2],[np.nan , 4],[9,8]])
+    print(data)
+
 
 
 def MinMax():
@@ -95,4 +124,6 @@ if __name__ == "__main__":
     # dictvec()
     # countVec()
     # tfidf()
-    MinMax()
+    # MinMax()
+    # stand()
+    imputer()
