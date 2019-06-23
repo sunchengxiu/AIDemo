@@ -15,10 +15,12 @@ import  numpy as np
 def stand():
 
     """
+    标准化：x' = (x- mean(平局值)) / (标准差  )
     标准化:目的是转化为均值为0，标准差为1
-
+    var : 方差 ： (x1 - mean)^2 + (x2 - mean)^2 + (x3 - mean)^2 + ... / n(样本个数) 标准差 = 根号方差
     :return:
     """
+
 
     std = StandardScaler()
     data = std.fit_transform([[2,-3,4] , [1,3,1] , [5,8,-1]])
@@ -46,17 +48,17 @@ def MinMax():
     # 鲁棒性：适合数据量较小的场景，不稳定
 
 
-    """
-    标准化：x' = (x- mean(平局值)) / (标准差  )
-    var : 方差 ： (x1 - mean)^2 + (x2 - mean)^2 + (x3 - mean)^2 + ... / n(样本个数) 标准差 = 根号方差
-    :return:
-    """
-
     mm = MinMaxScaler(feature_range=(5,6))
     data = mm.fit_transform([[80,5,30,50] , [60 , 90,5,2] , [80 , 50,30 , 20 ],[33,44,55,66]])
     print(data)
 
 def countVec():
+
+    """
+    字典特征数据抽取
+    :return:
+    """
+
     c1, c2, c3 = jiebaCut()
     print(c1, c2, c3)
 
@@ -102,7 +104,6 @@ def jiebaCut():
 def dictvec():
 
     """
-
     tf:Term frequency ，词的频率
     idf:inverse document frequency ， 逆文档频率
     重要性：ft*idf
@@ -121,9 +122,9 @@ def dictvec():
 
 if __name__ == "__main__":
 
-    # dictvec()
+    dictvec()
     # countVec()
     # tfidf()
     # MinMax()
     # stand()
-    imputer()
+    # imputer()
